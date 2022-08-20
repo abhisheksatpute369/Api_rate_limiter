@@ -1,9 +1,21 @@
-
+import {useEffect, useState} from 'react';
 import './App.css';
 
 function App() {
-  return (
-    <div>beauty</div>
+
+  const [result, setresult] = useState("");
+  const getdata = async () =>{
+    const data = await fetch("http://localhost:3002/pingme");
+    const res = await (data.json());
+    setresult(res);
+  } 
+
+  useEffect(()=>{
+    getdata();
+  },[]);
+
+  return ( 
+    <div id="main"> {result}</div>
   );
 }
 
